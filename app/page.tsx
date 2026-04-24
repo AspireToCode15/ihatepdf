@@ -217,7 +217,7 @@ function ColorCard({ href, icon, title, desc, colorTheme }: { href: string, icon
       className={`group p-6 md:p-7 rounded-[2rem] bg-white/80 backdrop-blur-sm border border-slate-100 shadow-sm transition-all duration-300 flex flex-col items-start gap-5 cursor-pointer hover:shadow-xl hover:bg-white hover:-translate-y-2 ${hoverStyles} relative overflow-hidden`}
     >
       <div className={`p-4 rounded-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 flex items-center justify-center border border-transparent group-hover:border-current ${iconBgStyles}`}>
-        {React.cloneElement(icon as React.ReactElement, { className: "w-7 h-7" })}
+        {React.cloneElement(icon as any, { className: "w-7 h-7" })}
       </div>
       <div>
         <h3 className="text-lg md:text-xl font-black text-slate-800 mb-1.5 tracking-tight group-hover:text-current transition-colors">{title}</h3>
