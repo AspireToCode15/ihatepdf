@@ -128,7 +128,7 @@ export default function ESignPDFPage() {
       setTimeout(() => {
         pages.forEach((p) => {
           if (!fabricCanvases.current[p.pageNum]) {
-            const canvasEl = document.getElementById(`canvas-page-${p.pageNum}`);
+            const canvasEl = document.getElementById(`canvas-page-${p.pageNum}`) as HTMLCanvasElement | null;
             if (canvasEl) {
               const fc = new fabric.Canvas(canvasEl, {
                 width: p.width,
