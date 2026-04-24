@@ -46,7 +46,8 @@ export default function FlattenFormsPage() {
       // 4. Save the locked PDF
       const pdfBytes = await pdfDoc.save();
       
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      // 🛠️ FIX: Added 'as any' here to bypass Vercel's strict TypeScript check
+      const blob = new Blob([pdfBytes as any], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
@@ -168,3 +169,4 @@ export default function FlattenFormsPage() {
     </div>
   );
 }
+
