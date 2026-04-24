@@ -131,10 +131,10 @@ export default function ESignPDFPage() {
             const canvasEl = document.getElementById(`canvas-page-${p.pageNum}`) as HTMLCanvasElement | null;
             if (canvasEl) {
               const fc = new fabric.Canvas(canvasEl, {
-                width: p.width,
-                height: p.height,
-                backgroundColor: null,
-              });
+  width: p.width,
+  height: p.height,
+  backgroundColor: undefined,
+});
               
               // Track active page on click
               fc.on('mouse:down', () => { activePageRef.current = p.pageNum; });
