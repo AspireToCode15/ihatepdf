@@ -108,7 +108,10 @@ export default function JpgToPdfPage() {
       }
 
       const pdfBytes = await pdfDoc.save();
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      
+      // 🛠️ FIX: Added 'as any' to bypass strict TypeScript checks on Vercel
+      const blob = new Blob([pdfBytes as any], { type: 'application/pdf' });
+      
       const url = URL.createObjectURL(blob);
       
       const link = document.createElement('a');
@@ -177,7 +180,7 @@ export default function JpgToPdfPage() {
                     <img src={img.previewUrl} alt={`upload-${index}`} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <button 
-                        onClick={() => removeFile(index)}
+                        onClick={() => removeImage(index)}
                         className="bg-white text-red-500 p-2 rounded-full hover:scale-110 transition-transform shadow-lg"
                       >
                         <Trash2 className="w-5 h-5" />
