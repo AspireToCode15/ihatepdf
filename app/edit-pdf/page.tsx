@@ -127,12 +127,14 @@ export default function EditPDFPage() {
       setTimeout(() => {
         pages.forEach((p) => {
           if (!fabricCanvases.current[p.pageNum]) {
-            const canvasEl = document.getElementById(`canvas-page-${p.pageNum}`);
+            // 🛠️ FIX 1: Type cast to HTMLCanvasElement | null
+            const canvasEl = document.getElementById(`canvas-page-${p.pageNum}`) as HTMLCanvasElement | null;
             if (canvasEl) {
               const fc = new fabric.Canvas(canvasEl, {
                 width: p.width,
                 height: p.height,
-                backgroundColor: null, // Transparent
+                // 🛠️ FIX 2: Changed null to undefined
+                backgroundColor: undefined, // Transparent
               });
               
               // Track which page the user is currently editing
@@ -316,7 +318,8 @@ export default function EditPDFPage() {
 
       // Bake and Download
       const pdfBytes = await pdfDoc.save();
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      // 🛠️ FIX 3: Added 'as any' to bypass the strict Vercel Blob check
+      const blob = new Blob([pdfBytes as any], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
       
       const link = document.createElement('a');
