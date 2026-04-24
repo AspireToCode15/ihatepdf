@@ -50,7 +50,7 @@ export default function ProtectPDFPage() {
       const encryptedBytes = await encryptPDF(pdfBytes, password);
 
       // 3. Save and Download
-      const blob = new Blob([encryptedBytes], { type: 'application/pdf' });
+     const blob = new Blob([encryptedBytes as any], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
       
       const link = document.createElement('a');
